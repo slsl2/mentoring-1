@@ -1,9 +1,18 @@
 import { useState } from "react";
 import searchIcon1 from "../assets/icons/ic_search_1.png";
 import searchIcon2 from "../assets/icons/ic_search_2.png";
+import { useNavigate } from "react-router-dom";
 
 function SearchBar() {
   const [isFocused, setIsFocused] = useState(false);
+  const [inputValue, setInputValue] = useState("");
+  const navigate = useNavigate();
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter" && inputValue.trim()) {
+      navigate(`/result?query=${encodeURIComponent(inputValue.trim())}`);
+    }
+  };
 
   return (
     <div className={`search-bar ${isFocused ? "focused" : ""}`}>
@@ -11,6 +20,9 @@ function SearchBar() {
       <input
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
+        value={inputValue}
+        onChange={(e) => setInputValue(e.target.value)}
+        onKeyDown={handleKeyDown}
         placeholder="Search keyword"
       />
     </div>
