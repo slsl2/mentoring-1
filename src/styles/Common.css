@@ -1,5 +1,21 @@
 :root {
   --color-liner-50: #00c3cc;
   --color-gray-30: #c2c6ce;
+  --color-gray-20: #f2f3f7;
   --color-gray-50: #33373d;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:visited {
+  color: inherit;
+}
+
+a:hover,
+a:active {
+  color: inherit;
+  text-decoration: none;
 }

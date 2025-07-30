@@ -1,6 +1,6 @@
 import "../styles/Home.css";
 import linerImg from "../assets/images/liner.png";
-import SearchBar from "../componetns/SearchBar";
+import SearchBar from "../components/SearchBar";
 
 function Home() {
   return (
