@@ -7,7 +7,9 @@ function Home() {
     <>
       <div className="home-container">
         <img className="liner-img" src={linerImg} />
-        <SearchBar />
+        <div className="search-section">
+          <SearchBar isResultPage={false} />
+        </div>
       </div>
     </>
   );
