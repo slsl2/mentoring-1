@@ -1,5 +1,3 @@
-// src/types/results.d.ts
-
 export interface DocumentItem {
   id: string;
   faviconUrl: string;

@@ -3,7 +3,9 @@ import defaultThumb from "../assets/images/default_thumb.png";
 import defaultFavi from "../assets/images/default_favi.png";
 import icUnsaved from "../assets/icons/ic_save_1.png";
 import icSaved from "../assets/icons/ic_save_2.png";
+import { useBookmark } from "../apis/sevices/useBookmark";
 import { useState } from "react";
+import ErrorModal from "./ErrorModal";
 
 interface ResultListProps {
   documents: DocumentItem[];
@@ -13,13 +15,14 @@ function ResultList({ documents }: ResultListProps) {
   const [bookmarkStatus, setBookmarkStatus] = useState<Record<string, boolean>>(
     {}
   );
+  const [showError, setShowError] = useState(false);
 
-  const toggleBookmark = (docId: string) => {
-    setBookmarkStatus((prev) => ({
-      ...prev,
-      [docId]: !prev[docId],
-    }));
-  };
+  const { toggleBookmark } = useBookmark(
+    (docId, isSaved) => {
+      setBookmarkStatus((prev) => ({ ...prev, [docId]: isSaved }));
+    },
+    () => setShowError(true)
+  );
 
   const mergedDocuments = documents.map((doc) => ({
     ...doc,
@@ -27,9 +30,10 @@ function ResultList({ documents }: ResultListProps) {
   }));
 
   return (
-    <ul>
-      {mergedDocuments.map((doc) => (
-        <div>
+    <>
+      {showError && <ErrorModal onClose={() => setShowError(false)} />}
+      <ul>
+        {mergedDocuments.map((doc) => (
           <li className="result-item" key={doc.id}>
             <a href={doc.url} target="_blank" rel="noopener noreferrer">
               <div className="item-thumb">
@@ -60,15 +64,15 @@ function ResultList({ documents }: ResultListProps) {
             <div className="item-save">
               <img
                 className="save-icon"
-                onClick={() => toggleBookmark(doc.id)}
+                onClick={() => toggleBookmark(doc.id, doc.isSaved)}
                 src={doc.isSaved ? icSaved : icUnsaved}
                 alt={doc.isSaved ? "saved" : "unsaved"}
               />
             </div>
           </li>
-        </div>
-      ))}
-    </ul>
+        ))}
+      </ul>
+    </>
   );
 }
 
