@@ -36,44 +36,6 @@ src
 ├─ App.tsx
 └─ main.tsx
 
-## 폴더 구조
-
-src
-├─ apis
-│ ├─ api
-│ │ ├─ bookmark.ts
-│ │ └─ results.ts
-│ └─ sevices
-│ │ ├─ useBookmark.ts
-│ │ └─ useGetResults.ts
-├─ assets
-│ ├─ icons
-│ └─ images
-├─ components
-│ ├─ ErrorModal.tsx
-│ ├─ ResultList.tsx
-│ ├─ SearchBar.tsx
-│ └─ SkeletonList.tsx
-├─ hooks
-│ ├─ useBottomIntersection.ts
-│ └─ useIntersection.ts
-├─ pages
-│ ├─ Home.tsx
-│ └─ Result.tsx
-├─ shared
-│ └─ Router.tsx
-├─ styles
-│ ├─ App.css
-│ ├─ Common.css
-│ ├─ ErrorModal.css
-│ ├─ Home.css
-│ ├─ Result.css
-│ └─ SearchBar.css
-├─ types
-│ └─ results.d.ts
-├─ App.tsx
-└─ main.tsx
-
 ## 특이사항
 
 ### 북마크: Optimistic Update 적용
